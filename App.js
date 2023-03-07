@@ -19,6 +19,7 @@ const App = () => {
       ...currentGoals,
       { value: inputGoal, key: Math.random().toString() },
     ]);
+    handleModalOff();
   };
 
   const deleteGoalHandler = (id) => {
@@ -28,16 +29,20 @@ const App = () => {
     });
   };
 
-  const handleModal = () => {
+  const handleModalOn = () => {
     setModalOn(true);
+  };
+
+  const handleModalOff = () => {
+    setModalOn(false);
   };
 
   return (
     <View style={styles.appContainer}>
-      <Button title="Add New Goal" color="#5e0acc" onPress={handleModal} />
+      <Button title="Add New Goal" color="#5e0acc" onPress={handleModalOn} />
       <Modal visible={modalOn} animationType="slide">
         <View style={styles.inputContainer}>
-          <GoalInput onAddGoal={addGoalHandler} />
+          <GoalInput onAddGoal={addGoalHandler} onCancel={handleModalOff} />
         </View>
       </Modal>
       <View style={styles.goalsContainer}>
@@ -66,8 +71,8 @@ const styles = StyleSheet.create({
   },
   inputContainer: {
     flex: 1,
-    flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "center",
+    padding: 16,
     alignItems: "center",
     marginBottom: 24,
     borderBottomWidth: 1,
