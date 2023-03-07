@@ -9,7 +9,7 @@ const GoalInput = ({ onAddGoal }) => {
   };
 
   const addGoalHandler = () => {
-    onAddGoal(inputGoal);
+    if (inputGoal) onAddGoal(inputGoal);
     setInputGoal("");
   };
 

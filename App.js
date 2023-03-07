@@ -13,6 +13,12 @@ const App = () => {
     ]);
   };
 
+  const deleteGoalHandler = (id) => {
+    setGoalsList((currentGoals) => {
+      return currentGoals.filter((goal) => goal.key !== id);
+    });
+  };
+
   return (
     <View style={styles.appContainer}>
       <View style={styles.inputContainer}>
@@ -21,7 +27,13 @@ const App = () => {
       <View style={styles.goalsContainer}>
         <FlatList
           data={goalsList}
-          renderItem={(itemData) => <GoalItem value={itemData.item.value} />}
+          renderItem={(itemData) => (
+            <GoalItem
+              value={itemData.item.value}
+              onDeleteItem={deleteGoalHandler}
+              id={itemData.item.key}
+            />
+          )}
         />
       </View>
     </View>
