@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { StyleSheet, TextInput, Button, View } from "react-native";
+import { StyleSheet, TextInput, Button, View, Image } from "react-native";
 
 const GoalInput = ({ onAddGoal, onCancel }) => {
   const [inputGoal, setInputGoal] = useState("");
@@ -15,6 +15,10 @@ const GoalInput = ({ onAddGoal, onCancel }) => {
 
   return (
     <>
+      <Image
+        style={styles.image}
+        source={require("../assets/images/goal.png")}
+      />
       <TextInput
         style={styles.textInput}
         placeholder="Your course goal!"
@@ -23,10 +27,10 @@ const GoalInput = ({ onAddGoal, onCancel }) => {
       />
       <View style={styles.buttonContainer}>
         <View style={styles.button}>
-          <Button title="Add Goal" onPress={addGoalHandler} />
+          <Button title="Add Goal" onPress={addGoalHandler} color="#b180f0" />
         </View>
         <View style={styles.button}>
-          <Button title="Cancel" onPress={onCancel} />
+          <Button title="Cancel" onPress={onCancel} color="#f31282" />
         </View>
       </View>
     </>
@@ -36,9 +40,17 @@ const GoalInput = ({ onAddGoal, onCancel }) => {
 const styles = StyleSheet.create({
   textInput: {
     borderWidth: 1,
-    borderColor: "#ccc",
+    borderColor: "#e4d0ff",
+    backgroundColor: "#e4d0ff",
+    color: "#120438",
+    borderRadius: 6,
     width: "100%",
-    padding: 8,
+    padding: 12,
+  },
+  image: {
+    width: 100,
+    height: 100,
+    margin: 20,
   },
   buttonContainer: {
     marginTop: 16,

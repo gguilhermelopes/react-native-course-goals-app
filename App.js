@@ -7,6 +7,7 @@ import {
   Modal,
   Button,
 } from "react-native";
+import { StatusBar } from "expo-status-bar";
 import GoalInput from "./components/GoalInput";
 import GoalItem from "./components/GoalItem";
 
@@ -38,26 +39,29 @@ const App = () => {
   };
 
   return (
-    <View style={styles.appContainer}>
-      <Button title="Add New Goal" color="#5e0acc" onPress={handleModalOn} />
-      <Modal visible={modalOn} animationType="slide">
-        <View style={styles.inputContainer}>
-          <GoalInput onAddGoal={addGoalHandler} onCancel={handleModalOff} />
+    <>
+      <StatusBar style="light" />
+      <View style={styles.appContainer}>
+        <Button title="Add New Goal" color="#b180f0" onPress={handleModalOn} />
+        <Modal visible={modalOn} animationType="slide">
+          <View style={styles.inputContainer}>
+            <GoalInput onAddGoal={addGoalHandler} onCancel={handleModalOff} />
+          </View>
+        </Modal>
+        <View style={styles.goalsContainer}>
+          <FlatList
+            data={goalsList}
+            renderItem={(itemData) => (
+              <GoalItem
+                value={itemData.item.value}
+                onDeleteItem={deleteGoalHandler}
+                id={itemData.item.key}
+              />
+            )}
+          />
         </View>
-      </Modal>
-      <View style={styles.goalsContainer}>
-        <FlatList
-          data={goalsList}
-          renderItem={(itemData) => (
-            <GoalItem
-              value={itemData.item.value}
-              onDeleteItem={deleteGoalHandler}
-              id={itemData.item.key}
-            />
-          )}
-        />
       </View>
-    </View>
+    </>
   );
 };
 
@@ -74,12 +78,10 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     padding: 16,
     alignItems: "center",
-    marginBottom: 24,
-    borderBottomWidth: 1,
-    borderBottomColor: "#ccc",
+    backgroundColor: "#311b6b",
   },
-
   goalsContainer: {
     flex: 5,
+    marginTop: 32,
   },
 });
